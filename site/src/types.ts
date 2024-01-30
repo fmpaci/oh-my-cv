@@ -39,6 +39,8 @@ export type ResumeHeaderItem = {
 
 export type ResumeFrontMatter = {
   readonly name?: string;
+  readonly title?: string;
+  readonly profile_pic?: string;
   readonly header?: Array<ResumeHeaderItem>;
 };
 

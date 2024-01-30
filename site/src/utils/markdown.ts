@@ -44,7 +44,16 @@ const resolveDeflist = (html: string) => {
 const resolveHeader = (html: string, frontmatter: ResumeFrontMatter) => {
   let header = "";
 
+  if (frontmatter.profile_pic)
+    header += `<div class="container intro-container">
+                 <div class="row clearfix">
+                    <div class="col-sm-4 ">
+                        <span class="profile-img" style="background-image: url(${frontmatter.profile_pic}) "></span>
+                    </div>
+                <div class="col-print-12">`;
+
   if (frontmatter.name) header += `<h1>${frontmatter.name}</h1>\n`;
+  if (frontmatter.title) header += `<h3>${frontmatter.title}</h3>\n`;
 
   if (frontmatter.header) {
     const n = frontmatter.header.length;
@@ -56,17 +65,17 @@ const resolveHeader = (html: string, frontmatter: ResumeFrontMatter) => {
       header += item.newLine ? "<br>\n" : "";
 
       header += `<span class="resume-header-item${
-        i === n - 1 || frontmatter.header[i + 1].newLine ? " no-separator" : ""
+        i === n - 1 || frontmatter.header[i + 1].newLine ? "no-separator" : ""
       }">`;
 
       if (item.link)
         header += `<a href="${item.link}" target="_blank" rel="noopener noreferrer">${item.text}</a>`;
       else header += item.text;
-
       header += `</span>\n`;
     }
-  }
 
+  }
+  if (frontmatter.profile_pic) header += `</div> </div> </div><br>`;
   return `<div class="resume-header">${header}</div>` + html;
 };
 
