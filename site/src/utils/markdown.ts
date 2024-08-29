@@ -73,7 +73,6 @@ const resolveHeader = (html: string, frontmatter: ResumeFrontMatter) => {
       else header += item.text;
       header += `</span>\n`;
     }
-
   }
   if (frontmatter.profile_pic) header += `</div> </div> </div><br>`;
   return `<div class="resume-header">${header}</div>` + html;
